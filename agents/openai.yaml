@@ -1,0 +1,4 @@
+interface:
+  display_name: SketchUp Agent
+  short_description: Debug SketchUp Ruby through the local Agent Bridge
+  default_prompt: Debug the SketchUp Ruby issue through the configured local Agent Bridge, using the real Moosas command handler and the required reload and clean-session verification loop.
