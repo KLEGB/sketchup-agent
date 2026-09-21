@@ -15,8 +15,8 @@ Use the local Agent Bridge to control the Ruby API in the user's already-open Sk
 ## Agent Bridge behavior and scope
 
 - Work through the authenticated Bridge in the existing SketchUp session. Do not start SketchUp, use mouse automation, or switch to another session.
-- Ruby `eval` is always enabled; there is no separate “Allow raw eval” switch. Use narrowly scoped expressions to call Ruby APIs, inspect state, and return useful computation results.
-- File access has three policies: **Do not allow local file modifications** (default), **Allow modifications in a specified directory**, and **Allow modifications in all directories** (⚠️ broad access; normally avoid). The selected policy also constrains Bridge `load_file`, `reload`, and `save_snapshot` operations. File/process/model-save guards are defense in depth, not an OS sandbox; arbitrary in-process Ruby or native extensions cannot be guaranteed incapable of external writes.
+- Ruby `eval` is always enabled; there is no separate "Allow raw eval" switch. Use narrowly scoped expressions to call Ruby APIs, inspect state, and return useful computation results.
+- File access has three policies: **Do not allow local file modifications** (default), **Allow modifications in a specified directory**, and **Allow modifications in all directories** (broad access; normally avoid). The selected policy also constrains Bridge `load_file`, `reload`, and `save_snapshot` operations. File/process/model-save guards are defense in depth, not an OS sandbox; arbitrary in-process Ruby or native extensions cannot be guaranteed incapable of external writes.
 - With file modifications disallowed, Ruby API access and in-memory SketchUp modeling remain available; avoid filesystem-dependent workflows and never imply that paths are exposed. Some real analyses need files or external processes and therefore require a suitable explicitly selected scope.
 - Do not return model file paths, connection-file contents, or Bridge tokens. The client reads `%APPDATA%\\AgentBridge\\bridge_connection.json` (with platform temp-directory fallbacks); never print or persist its token.
 
